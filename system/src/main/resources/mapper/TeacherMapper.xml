@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hqyj.dao.TeacherMapper">
+  <resultMap id="BaseResultMap" type="com.hqyj.entity.Teacher">
+    <id column="teacher_number" jdbcType="VARCHAR" property="teacherNumber" />
+    <result column="teacher_name" jdbcType="VARCHAR" property="teacherName" />
+    <result column="teacher_sex" jdbcType="VARCHAR" property="teacherSex" />
+    <result column="teacher_tel" jdbcType="VARCHAR" property="teacherTel" />
+    <result column="teacher_age" jdbcType="INTEGER" property="teacherAge" />
+    <result column="course_id" jdbcType="INTEGER" property="courseId" />
+    <result column="role_id" jdbcType="INTEGER" property="roleId" />
+    <result column="teacher_address" jdbcType="VARCHAR" property="teacherAddress" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    teacher_number, teacher_name, teacher_sex, teacher_tel, teacher_age, course_id, role_id, 
+    teacher_address
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from teacher
+    where teacher_number = #{teacherNumber,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from teacher
+    where teacher_number = #{teacherNumber,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hqyj.entity.Teacher">
+    insert into teacher (teacher_number, teacher_name, teacher_sex, 
+      teacher_tel, teacher_age, course_id, 
+      role_id, teacher_address)
+    values (#{teacherNumber,jdbcType=VARCHAR}, #{teacherName,jdbcType=VARCHAR}, #{teacherSex,jdbcType=VARCHAR}, 
+      #{teacherTel,jdbcType=VARCHAR}, #{teacherAge,jdbcType=INTEGER}, #{courseId,jdbcType=INTEGER}, 
+      #{roleId,jdbcType=INTEGER}, #{teacherAddress,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hqyj.entity.Teacher">
+    insert into teacher
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="teacherNumber != null">
+        teacher_number,
+      </if>
+      <if test="teacherName != null">
+        teacher_name,
+      </if>
+      <if test="teacherSex != null">
+        teacher_sex,
+      </if>
+      <if test="teacherTel != null">
+        teacher_tel,
+      </if>
+      <if test="teacherAge != null">
+        teacher_age,
+      </if>
+      <if test="courseId != null">
+        course_id,
+      </if>
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="teacherAddress != null">
+        teacher_address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="teacherNumber != null">
+        #{teacherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherName != null">
+        #{teacherName,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherSex != null">
+        #{teacherSex,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherTel != null">
+        #{teacherTel,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherAge != null">
+        #{teacherAge,jdbcType=INTEGER},
+      </if>
+      <if test="courseId != null">
+        #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="teacherAddress != null">
+        #{teacherAddress,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hqyj.entity.Teacher">
+    update teacher
+    <set>
+      <if test="teacherName != null">
+        teacher_name = #{teacherName,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherSex != null">
+        teacher_sex = #{teacherSex,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherTel != null">
+        teacher_tel = #{teacherTel,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherAge != null">
+        teacher_age = #{teacherAge,jdbcType=INTEGER},
+      </if>
+      <if test="courseId != null">
+        course_id = #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="roleId != null">
+        role_id = #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="teacherAddress != null">
+        teacher_address = #{teacherAddress,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where teacher_number = #{teacherNumber,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hqyj.entity.Teacher">
+    update teacher
+    set teacher_name = #{teacherName,jdbcType=VARCHAR},
+      teacher_sex = #{teacherSex,jdbcType=VARCHAR},
+      teacher_tel = #{teacherTel,jdbcType=VARCHAR},
+      teacher_age = #{teacherAge,jdbcType=INTEGER},
+      course_id = #{courseId,jdbcType=INTEGER},
+      role_id = #{roleId,jdbcType=INTEGER},
+      teacher_address = #{teacherAddress,jdbcType=VARCHAR}
+    where teacher_number = #{teacherNumber,jdbcType=VARCHAR}
+  </update>
+</mapper>
